@@ -1,0 +1,232 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-sm);
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--space-sm);
+  background-color: var(--color-surface);
+  border: var(--border-width) solid var(--color-ink);
+}
+
+.card {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  border: none;
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.card__inner {
+  position: absolute;
+  inset: 0;
+  transform-origin: center center;
+}
+
+.card__face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg);
+  border: var(--border-width) solid var(--color-ink);
+}
+
+.card__face--back {
+  opacity: 1;
+  z-index: 1;
+}
+
+.card__face--front {
+  opacity: 0;
+  z-index: 0;
+}
+
+.card.is-flipped:not(.is-flip-open):not(.is-flip-close) .card__face--back {
+  opacity: 0;
+  z-index: 0;
+}
+
+.card.is-flipped:not(.is-flip-open):not(.is-flip-close) .card__face--front {
+  opacity: 1;
+  z-index: 1;
+}
+
+.card__image {
+  width: 68%;
+  height: 68%;
+  object-fit: contain;
+  filter: invert(1);
+  image-rendering: pixelated;
+}
+
+/* Pixel slideshow flip: discrete scaleX frames, face swap at midpoint */
+@keyframes pixel-flip-open-inner {
+  0% {
+    transform: scaleX(1);
+  }
+  16.666% {
+    transform: scaleX(0.7);
+  }
+  33.333% {
+    transform: scaleX(0.35);
+  }
+  50% {
+    transform: scaleX(0);
+  }
+  66.666% {
+    transform: scaleX(0.35);
+  }
+  83.333% {
+    transform: scaleX(0.7);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes pixel-flip-open-back {
+  0%,
+  49.999% {
+    opacity: 1;
+    z-index: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+    z-index: 0;
+  }
+}
+
+@keyframes pixel-flip-open-front {
+  0%,
+  49.999% {
+    opacity: 0;
+    z-index: 0;
+  }
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 1;
+  }
+}
+
+@keyframes pixel-flip-close-inner {
+  0% {
+    transform: scaleX(1);
+  }
+  16.666% {
+    transform: scaleX(0.7);
+  }
+  33.333% {
+    transform: scaleX(0.35);
+  }
+  50% {
+    transform: scaleX(0);
+  }
+  66.666% {
+    transform: scaleX(0.35);
+  }
+  83.333% {
+    transform: scaleX(0.7);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes pixel-flip-close-back {
+  0%,
+  49.999% {
+    opacity: 0;
+    z-index: 0;
+  }
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 1;
+  }
+}
+
+@keyframes pixel-flip-close-front {
+  0%,
+  49.999% {
+    opacity: 1;
+    z-index: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+    z-index: 0;
+  }
+}
+
+.card.is-flip-open .card__inner,
+.card.is-flip-close .card__inner {
+  animation: pixel-flip-open-inner 240ms steps(1, end) forwards;
+}
+
+.card.is-flip-close .card__inner {
+  animation-name: pixel-flip-close-inner;
+}
+
+.card.is-flip-open .card__face--back {
+  animation: pixel-flip-open-back 240ms steps(1, end) forwards;
+}
+
+.card.is-flip-open .card__face--front {
+  animation: pixel-flip-open-front 240ms steps(1, end) forwards;
+}
+
+.card.is-flip-close .card__face--back {
+  animation: pixel-flip-close-back 240ms steps(1, end) forwards;
+}
+
+.card.is-flip-close .card__face--front {
+  animation: pixel-flip-close-front 240ms steps(1, end) forwards;
+}
+
+.card.is-matched .card__face {
+  border-color: var(--color-match);
+  box-shadow: inset 0 0 0 2px var(--color-match);
+}
+
+.card.is-mismatch .card__face {
+  border-color: var(--color-mismatch);
+  box-shadow: inset 0 0 0 2px var(--color-mismatch);
+}
+
+.card:not(.is-flipped):not(.is-matched):hover .card__face--back {
+  border-color: var(--color-accent);
+}
+
+.card:disabled {
+  cursor: default;
+}
+
+@media (min-width: 480px) {
+  .board {
+    gap: var(--space-md);
+    padding: var(--space-md);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card.is-flip-open .card__inner,
+  .card.is-flip-close .card__inner,
+  .card.is-flip-open .card__face--back,
+  .card.is-flip-open .card__face--front,
+  .card.is-flip-close .card__face--back,
+  .card.is-flip-close .card__face--front {
+    animation-duration: 1ms;
+  }
+}
