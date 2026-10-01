@@ -69,7 +69,7 @@
   image-rendering: pixelated;
 }
 
-/* Pixel slideshow flip: discrete scaleX frames, face swap at midpoint */
+/* pixel slideshow flip */
 @keyframes pixel-flip-open-inner {
   0% {
     transform: scaleX(1);

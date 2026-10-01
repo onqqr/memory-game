@@ -3,18 +3,9 @@ import { createCounters } from "./counters.js";
 import { el } from "./dom.js";
 import { createFooter } from "./footer.js";
 import { createHeader } from "./header.js";
-import {
-  addScore,
-  createLeaderboardContent,
-  LEADERBOARD_TITLE_ID,
-} from "./leaderboard.js";
+import { addScore, createLeaderboardContent, LEADERBOARD_TITLE_ID } from "./leaderboard.js";
 import { createModal } from "./modal.js";
-import {
-  createInitialState,
-  MISMATCH_DELAY_MS,
-  resetState,
-  TOTAL_PAIRS,
-} from "./state.js";
+import { createInitialState, MISMATCH_DELAY_MS, resetState, TOTAL_PAIRS } from "./state.js";
 import { createVictoryContent, VICTORY_TITLE_ID } from "./victory.js";
 
 const state = createInitialState();

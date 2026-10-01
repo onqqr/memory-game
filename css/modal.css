@@ -22,7 +22,6 @@ dialog.modal::backdrop {
   padding: 0 8px 8px 0;
 }
 
-/* Hard pixel shadow (solid offset block), not clipped by dialog */
 .modal__frame::after {
   content: "";
   position: absolute;
