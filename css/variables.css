@@ -1,0 +1,57 @@
+:root {
+  --color-bg: #222222;
+  --color-surface: #2e2e2e;
+  --color-ink: #f5f5f5;
+  --color-muted: #8a8a8a;
+  --color-accent: #fcca46;
+  --color-match: #33ff33;
+  --color-mismatch: #ff3333;
+  --font-pixel: "Press Start 2P", monospace;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --border-width: 3px;
+  --card-radius: 0;
+  --transition-fast: 150ms ease;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  line-height: 1.6;
+  color: var(--color-ink);
+  background-color: var(--color-bg);
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.82)),
+    url("../assets/black-duck-overlord-city-12.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  image-rendering: auto;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  image-rendering: pixelated;
+}
