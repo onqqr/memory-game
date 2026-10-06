@@ -10,11 +10,18 @@ flip cards to find 8 pairs. moves and pairs are counted. after a win, the score 
 - victory and leaderboard modals (`<dialog>`)
 - results persist in the browser
 
+## Requirements
+
+- Node.js 20 LTS or newer
+
 ## Run locally
 
 ES modules need a local HTTP server (`file://` may block scripts).
 
 ```bash
+git clone https://github.com/onqqr/memory-game.git
+cd memory-game
+git switch memory-game
 npx --yes serve .
 ```
 open URL from terminal (usually `http://localhost:3000`).
